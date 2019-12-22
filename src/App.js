@@ -3,6 +3,7 @@ import Search from './components/Search';
 // import Search from './components/Filters';
 import Filters from './components/Filters';
 import Books from './components/Books';
+import Item from './components/Item';
 
 
 
@@ -15,6 +16,7 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+        searchResults: [],
         searchInput:'',
         bookType: 'all',
         searchQuery: 'henry',
@@ -38,7 +40,7 @@ testSubmit = (e) => {
       throw new Error()
     }
   })
-  .then (responseJson => console.log(responseJson))
+  .then (responseJson => this.handleSearchResults(responseJson.items)) 
   .catch(Error => console.log("error occured")
   )
 }
@@ -80,6 +82,9 @@ handleSearchInput = (e) => {
   console.log(this.state.searchInput)
 } 
 
+handleSearchResults = (items) => {
+  this.setState({searchResults: items})
+}
 
 render(){
   return (
@@ -92,6 +97,7 @@ render(){
       <Filters handleFilter={this.handleFilter}/>
       <Books handleBooks={this.handleBooks}/>
       </form>
+      <ul>{this.state.searchResults.map(item => (<Item item={item} key={item.id}/>))}</ul>
     </div>
   );
 }
