@@ -4,6 +4,7 @@ import Search from './components/Search';
 import Filters from './components/Filters';
 import Books from './components/Books';
 import Item from './components/Item';
+import NoReturn from './components/NoReturn';
 
 
 
@@ -41,30 +42,13 @@ testSubmit = (e) => {
     }
   })
   .then (responseJson => this.handleSearchResults(responseJson.items)) 
-  .catch(Error => console.log("error occured")
+  .catch(Error => this.handleError()
   )
 }
 
-// handleSearchSubmit = (submitEvent, searchInput) => {
-//   submitEvent.preventDefault();
-//   this.setState ({
-//   searchQuery: searchInput});
-// const searchURL = "https://www.googleapis.com/books/v1/volumes?q=search+terms";
-// const key = "AIzaSyBCEXLIp1u2q1WSHmApGMtvzmbnmKxL5go";
-// const newSearchURL = searchURL + searchInput + key 
-// // const newSearchURL = newQuery(searchURL, searchQuery, key); 
-// console.log(newSearchURL);
-
-// fetch(newSearchURL) 
-// .then(response => {
-//   if (response.ok){
-//     return response.json();
-// } else {
-//   throw new Error();
-// }
- 
-// }); 
-// }
+handleError(){
+  console.log('No books found')
+}
 
 handleFilter = (e) => {
   this.setState({filterType: e.target.value});
@@ -87,6 +71,14 @@ handleSearchResults = (items) => {
 }
 
 render(){
+  let booksFound;
+  const apiRes = this.state.searchResults;
+  if(apiRes !== undefined){
+    booksFound = this.state.searchResults.map(item => (<Item item={item} key={item.id}/>))
+  } else {
+    booksFound = <NoReturn />;
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -97,7 +89,7 @@ render(){
       <Filters handleFilter={this.handleFilter}/>
       <Books handleBooks={this.handleBooks}/>
       </form>
-      <ul>{this.state.searchResults.map(item => (<Item item={item} key={item.id}/>))}</ul>
+      <ul>{booksFound}</ul>
     </div>
   );
 }

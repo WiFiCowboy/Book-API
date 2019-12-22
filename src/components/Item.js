@@ -10,12 +10,14 @@ export default class Item extends Component {
     let price = '';
     if (item.saleInfo && item.saleInfo.retailPrice) {
       price = item.saleInfo.retailPrice.amount;
+    } else {
+      price = 'N/A'
     }
     return (
       <li>
         <h1>{authors}</h1>
         <h2>{title}</h2>
-        <p>{price}</p>
+        <p>$ {price}</p>
         <img src={item.volumeInfo.imageLinks.thumbnail} alt="book appearance" />
         <p>{description}</p>
       </li>)
