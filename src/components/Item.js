@@ -6,13 +6,17 @@ export default class Item extends Component {
 
     const { item } = this.props;
 
-    let {author, title, image, price, description} = item;
-    
+    let { authors, title, description } = item.volumeInfo;
+    let { author } = authors[0];
+    //let {price} = item.saleInfo.retailPrice.amount;
+    //let {price} = listPrice.amount;
+    // let {image} = item.volumeInfo.imageLinks.thumbnail;
+
     return (<li>
       <h1>{author}</h1>
       <h2>{title}</h2>
-      <p>{price}</p>
-      <img src={image}/>
+      {/* <p>{price}</p>
+      <img src={image} /> */}
       <p>{description}</p>
     </li>)
 
