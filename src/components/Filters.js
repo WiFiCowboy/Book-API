@@ -9,7 +9,7 @@ export default class Filters extends Component{
         <label>Book Type</label>
         <select onChange={this.props.handleFilter} >
           <option value='full'>Full</option>
-          <option value='free-book'>free-ebooks</option>
+          <option value='free-ebooks'>free-ebooks</option>
           <option value='paid-ebooks'>paid-ebooks</option>
           <option value='ebooks'>ebooks</option>
         </select>

@@ -28,13 +28,13 @@ export default class App extends Component {
 // test submit button
 testSubmit = (e) => {
   e.preventDefault();
-  const and = '&';
+  // const and = '&filter=';
   const bookTypes = this.state.bookType;
   const filterTypes = this.state.filterType;
   const search = this.state.searchInput;
   const searchURL = "https://www.googleapis.com/books/v1/volumes?q=";
   const key = "&Key=AIzaSyBCEXLIp1u2q1WSHmApGMtvzmbnmKxL5go";
-  const newSearchURL = searchURL + search + and + bookTypes + and + filterTypes + key;
+  const newSearchURL = searchURL + search + '&printType=' + bookTypes + '&filter=' + filterTypes + key;
   console.log(newSearchURL); 
   fetch(newSearchURL)
   .then(response => {

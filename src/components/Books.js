@@ -9,8 +9,8 @@ export default class Books extends Component{
         <label>Print type</label>
         <select onChange={this.props.handleBooks}>
           <option value='all'>All</option>
-          <option value='book'>Book</option>
-          <option value='magazine'>Magazine</option>
+          <option value='books'>Book</option>
+          <option value='magazines'>Magazine</option>
         </select>
       </div>
     )
