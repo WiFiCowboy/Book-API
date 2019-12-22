@@ -10,7 +10,7 @@ export default class Item extends Component {
     let price = '';
     if (item.saleInfo && item.saleInfo.retailPrice) {
       price = item.saleInfo.retailPrice.amount;
-    }
+    } 
     return (
       <li>
         <h1>{authors}</h1>
